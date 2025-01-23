@@ -6,6 +6,18 @@ import Nav from "./Nav/Nav";
 import axios from "axios";
 import Body from "./Body/Body";
 import Footer from "./Footer/Footer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Politics from "./Pages/Politics";
+import World from "./Pages/World";
+import Economy from "./Pages/Economy";
+import Science from "./Pages/Science";
+import Business from "./Pages/Business";
+import Travel from "./Pages/Travel";
+import Climate from "./Pages/Climate";
+import Lifestyle from "./Pages/Lifestyle";
+import Food from "./Pages/Food";
+import Sports from "./Pages/Sports";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -53,24 +65,45 @@ function App() {
   }
 
   return (
-    <div className="bg-[linear-gradient(to_bottom,_black_50%,_#F3F2EA_25%)] h-screen">
-      <div className="container w-5/6 mx-auto">
-        <Header />
+    <BrowserRouter>
+      <div className="bg-[linear-gradient(to_bottom,_black_50%,_#F3F2EA_25%)] h-screen">
+        <div className="container w-5/6 mx-auto">
+          <Header />
+        </div>
+        <div className="container w-5/6 mx-auto">
+          <Nav />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Hero newsData={newsData} />
+                  <Body
+                    newsData={newsData}
+                    handleButtonClick={handleButtonClick}
+                    page={page}
+                    isLoading={isLoading}
+                  />
+                </>
+              }
+            />
+            <Route path="/politics" element={<Politics />} />
+            <Route path="/world" element={<World />} />
+            <Route path="/economy" element={<Economy />} />
+            <Route path="/science" element={<Science />} />
+            <Route path="/business" element={<Business />} />
+            <Route path="/travel" element={<Travel />} />
+            <Route path="/climate" element={<Climate />} />
+            <Route path="/lifestyle" element={<Lifestyle />} />
+            <Route path="/food" element={<Food />} />
+            <Route path="/sports" element={<Sports />} />
+          </Routes>
+        </div>
+        <div className="bg-black w">
+          <Footer />
+        </div>
       </div>
-      <div className="container w-5/6 mx-auto">
-        <Nav />
-        <Hero newsData={newsData} />
-        <Body
-          newsData={newsData}
-          handleButtonClick={handleButtonClick}
-          page={page}
-          isLoading={isLoading}
-        />
-      </div>
-      <div className="bg-black w">
-        <Footer />
-      </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

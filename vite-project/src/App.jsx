@@ -1,47 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Header/Header";
 import Hero from "./Hero/Hero";
 import Nav from "./Nav/Nav";
 import axios from "axios";
-import { useEffect } from "react";
-import Trendings from "./Trendings/Trendings";
-import React from "react";
-import { v4 as uuidv4 } from 'uuid';
 import Body from "./Body/Body";
-import HeaderMain from "./HeaderMain/HeaderMain";
-function App() {
+import Footer from "./Footer/Footer";
 
-    const [newsData, setNewsData] = useState(null);
-    const [error, setError] = useState(null);
-  
-    useEffect(() => {
-      axios
-        .get(
-          `http://api.mediastack.com/v1/news?access_key=11087a75960e02f9918a130be7598d60&languages=en&sources=cnn,-bbc`
-        )
-        .then((response) => {
-          console.log("Data fetched:", response.data);
-          setNewsData(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-          setError(error);
-        });
-    }, []);
-  
+function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [newsData, setNewsData] = useState(null);
+  const [error, setError] = useState(null);
+  const [page, setPage] = useState(6);
+
+  const handleClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 100); // Simulate async operation
+  };
+
+  const loadMore = () => {
+    setPage((prevPage) => prevPage + 4); // Functional update
+  };
+
+  const handleButtonClick = () => {
+    handleClick();
+    loadMore();
+  };
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=365775b0ba264ee5a157d7a6e0f74a21&pageSize=${page}`
+      )
+      .then((response) => {
+        console.log("Data fetched:", response.data);
+        setNewsData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError(error);
+      });
+  }, [page]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!newsData) {
+    return <div>Loading...</div>; // Handle initial loading state
+  }
 
   return (
     <div className="bg-[linear-gradient(to_bottom,_black_50%,_#F3F2EA_25%)] h-screen">
-      <div className=" container w-5/6 mx-auto">
+      <div className="container w-5/6 mx-auto">
         <Header />
       </div>
-      <div className=" container w-5/6 mx-auto">
+      <div className="container w-5/6 mx-auto">
         <Nav />
-{/*         <Trendings newsData={newsData}/>
- */}        <Hero newsData={newsData}/>
-{/*             <HeaderMain/>
- */}            <Body newsData={newsData}/>
+        <Hero newsData={newsData} />
+        <Body newsData={newsData} handleButtonClick={handleButtonClick} page={page}  isLoading={isLoading} />
+      </div>
+      <div className="bg-black w">
+        <Footer />
       </div>
     </div>
   );

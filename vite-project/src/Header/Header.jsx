@@ -6,13 +6,15 @@ const Header = () => {
       <div className="mt-5">
         <h1 className=" text-4xl font-bold cursor-pointer text-white">NEWSLETTER</h1>
       </div>
-      <div>
+      <div className="mt-5 flex justify-center items-center">
         <input
-          className="mt-5 w-96 py-1 px-4 bg-green-900 text-base text-white"
+          className=" w-96 px-4 bg-[#04594D] text-base text-white h-9"
           type="text"
           placeholder="Search for headlines"
         />
-        <button className="py-1 px-4 bg-red-900 text-base text-white">Search</button>
+        <div>
+        <button className=" px-4 bg-[#8E4042] text-base text-white h-9">Search</button>
+        </div>
       </div>
     </div>
   );

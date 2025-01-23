@@ -1,6 +1,21 @@
 import React from "react";
+import  { useState, useEffect } from "react";
+
 
 const Nav = () => {
+
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const formattedTime = currentDate.toLocaleTimeString().slice(0, 5);
+
   return (
     <div>
       <nav className="bg-[#1A1A1A]">
@@ -79,7 +94,7 @@ const Nav = () => {
                   Sports
                 </a>
             </div>
-            <p className="pe-6 text-white text-sm">13:40 24C</p>
+            <p className="pe-6 text-white text-sm">{formattedTime} </p>
           </div>
         </div>
       </nav>

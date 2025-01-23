@@ -17,11 +17,11 @@ function App() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 100); // Simulate async operation
+    }, 2000);
   };
 
   const loadMore = () => {
-    setPage((prevPage) => prevPage + 4); // Functional update
+    setPage((prevPage) => prevPage + 4);
   };
 
   const handleButtonClick = () => {
@@ -49,7 +49,7 @@ function App() {
   }
 
   if (!newsData) {
-    return <div>Loading...</div>; // Handle initial loading state
+    return <div>Loading...</div>;
   }
 
   return (
@@ -60,7 +60,12 @@ function App() {
       <div className="container w-5/6 mx-auto">
         <Nav />
         <Hero newsData={newsData} />
-        <Body newsData={newsData} handleButtonClick={handleButtonClick} page={page}  isLoading={isLoading} />
+        <Body
+          newsData={newsData}
+          handleButtonClick={handleButtonClick}
+          page={page}
+          isLoading={isLoading}
+        />
       </div>
       <div className="bg-black w">
         <Footer />

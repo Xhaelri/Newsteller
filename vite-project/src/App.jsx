@@ -44,7 +44,7 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=365775b0ba264ee5a157d7a6e0f74a21&pageSize=${page}`
+        `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=365775b0ba264ee5a157d7a6e0f74a21&pageSize=${page}`
       )
       .then((response) => {
         console.log("Data fetched:", response.data);

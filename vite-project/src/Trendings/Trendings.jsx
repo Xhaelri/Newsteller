@@ -9,9 +9,9 @@ const Trendings = ({ newsData }) => {
   }
 
   return (
-    <div className="bg-white px-4 py-4">
+    <div className="bg-white px-4 py-4 h-fit  ">
       <HeaderTrinding />
-      <div className="grid grid-cols-1 gap-2 bg-white">
+      <div className="grid grid-cols-1 gap-2 bg-white ">
         {/* Map through articles */}
         {newsData.articles.slice(2, 10).map((article) => (
           <div

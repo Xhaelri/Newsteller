@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="flex justify-between items-center mb-14">
+    <div className="flex justify-between items-center mb-14 max-lg:flex-wrap">
       <div className="mt-5">
         <Link to="/">
           <h1 className="text-4xl font-bold cursor-pointer text-white">
@@ -13,7 +13,7 @@ const Header = () => {
       </div>
       <div className="mt-5 flex justify-center items-center">
         <input
-          className="w-96 px-4 bg-[#04594D] text-base text-white h-9"
+          className="w-96 px-4 bg-[#04594D] text-base text-white h-9 max-lg:w-48"
           type="text"
           placeholder="Search for headlines"
         />

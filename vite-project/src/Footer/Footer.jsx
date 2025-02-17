@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="flex justify-between mb-14 gap-10  max-lg:flex-col max-lg:items-center">
         <div className="mt-5">
           <h1 className=" text-5xl sm:text-3xl font-bold cursor-pointer text-white me-10 sm:me-0 max-lg:hidden ">
-            NEWSLETTER
+            NEWSTELLER
           </h1>
         </div>
         <div>
@@ -42,11 +42,11 @@ const Footer = () => {
           </div>
         </div>
       </div>
-          <div>
-            <h6 className="text-white mt-5 text-center text-xs max-lg:pb-5 ">
-              © 2025 Newsletter. All rights reserved
-            </h6>
-          </div>
+      <div>
+        <h6 className="text-white mt-5 text-center text-xs max-lg:pb-5 ">
+          © 2025 Newsletter. All rights reserved
+        </h6>
+      </div>
     </div>
   );
 };

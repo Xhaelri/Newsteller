@@ -7,7 +7,7 @@ const Header = () => {
       <div className="mt-5">
         <Link to="/">
           <h1 className="text-4xl font-bold cursor-pointer text-white">
-            NEWSLETTER
+            NEWSTELLER
           </h1>
         </Link>
       </div>
